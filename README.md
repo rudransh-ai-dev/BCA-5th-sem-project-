@@ -93,7 +93,18 @@ src/
 
 ---
 
-## 👩‍💻 Developer
+## � Future Enhancements (Real-World Integration)
+
+While this project currently uses simulated data for academic demonstration, the following real-world integrations are planned:
+- [ ] **Real Database Integration:** Migrate `localstorage`/Context dummy data to a production database (e.g., MongoDB, PostgreSQL via Prisma).
+- [ ] **Secure Authentication:** Implement NextAuth.js or JWT-based authentication instead of simulated client-side login.
+- [ ] **Image Optimization:** Replace native `<img>` tags with Next.js `<Image>` component for better performance metrics.
+- [ ] **Server-Side Rendering (SSR):** Move product fetching and catalog generation to Server Components for improved SEO and initial load times.
+- [ ] **Payment Gateway Integration:** Add real payment processing (e.g., Stripe, Razorpay) to replace the simulated checkout flow.
+
+---
+
+## �👩‍💻 Developer
 
 **BCA 5th Semester Project**  
 GitHub: [@LillyShadow](https://github.com/LillyShadow)
