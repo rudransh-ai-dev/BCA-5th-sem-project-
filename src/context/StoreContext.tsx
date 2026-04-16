@@ -79,7 +79,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
         const subtotal = items.reduce((sum, item) => sum + item.totalPrice, 0);
         const tax = subtotal * 0.08; // 8% tax
-        const shipping = subtotal > 50 ? 0 : 5.99; // Free shipping over $50
+        const shipping = subtotal > 50 ? 0 : 5.99;
 
         return {
             orderId: order.id,

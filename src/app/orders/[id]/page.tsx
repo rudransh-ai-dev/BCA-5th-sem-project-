@@ -75,9 +75,9 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                                         </div>
                                         <div className="flex-1">
                                             <h3 className="font-semibold">{item.medicine.name}</h3>
-                                            <p className="text-sm text-gray-500">Qty: {item.quantity} × ${item.medicine.price.toFixed(2)}</p>
+                                            <p className="text-sm text-gray-500">Qty: {item.quantity} &times; &#8377;{item.medicine.price.toFixed(2)}</p>
                                         </div>
-                                        <p className="font-bold">${(item.medicine.price * item.quantity).toFixed(2)}</p>
+                                        <p className="font-bold">&#8377;{(item.medicine.price * item.quantity).toFixed(2)}</p>
                                     </div>
                                 ))}
                             </div>
@@ -91,11 +91,11 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                     <div className="bg-white rounded-2xl shadow-lg p-6 h-fit sticky top-24">
                         <h2 className="text-xl font-bold mb-6">Bill Summary</h2>
                         <div className="space-y-3 text-sm">
-                            <div className="flex justify-between"><span>Subtotal</span><span>${bill.subtotal.toFixed(2)}</span></div>
-                            <div className="flex justify-between"><span>Tax (8%)</span><span>${bill.tax.toFixed(2)}</span></div>
-                            <div className="flex justify-between"><span>Shipping</span><span>{bill.shipping === 0 ? 'Free' : `$${bill.shipping.toFixed(2)}`}</span></div>
+                            <div className="flex justify-between"><span>Subtotal</span><span>&#8377;{bill.subtotal.toFixed(2)}</span></div>
+                            <div className="flex justify-between"><span>Tax (8%)</span><span>&#8377;{bill.tax.toFixed(2)}</span></div>
+                            <div className="flex justify-between"><span>Shipping</span><span>{bill.shipping === 0 ? 'Free' : `₹${bill.shipping.toFixed(2)}`}</span></div>
                             <div className="border-t pt-3 flex justify-between text-lg font-bold">
-                                <span>Total</span><span className="text-emerald-600">${bill.grandTotal.toFixed(2)}</span>
+                                <span>Total</span><span className="text-emerald-600">&#8377;{bill.grandTotal.toFixed(2)}</span>
                             </div>
                         </div>
                         <button onClick={() => window.print()} className="w-full mt-6 py-3 bg-emerald-50 text-emerald-600 font-medium rounded-xl hover:bg-emerald-100">

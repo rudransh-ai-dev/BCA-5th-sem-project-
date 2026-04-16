@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { User } from '@/types';
 
 interface AuthContextType {
@@ -40,18 +40,22 @@ const usersDb: { user: User; password: string }[] = [
     },
 ];
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<User | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        // Check for saved user session
-        const savedUser = localStorage.getItem('pharmacy_user');
-        if (savedUser) {
-            setUser(JSON.parse(savedUser));
+function getInitialUser(): User | null {
+    if (typeof window === 'undefined') return null;
+    const savedUser = localStorage.getItem('pharmacy_user');
+    if (savedUser) {
+        try {
+            return JSON.parse(savedUser);
+        } catch {
+            return null;
         }
-        setIsLoading(false);
-    }, []);
+    }
+    return null;
+}
+
+export function AuthProvider({ children }: { children: ReactNode }) {
+    const [user, setUser] = useState<User | null>(getInitialUser);
+    const [isLoading] = useState(false);
 
     const login = async (email: string, password: string): Promise<boolean> => {
         // Simulate API call delay

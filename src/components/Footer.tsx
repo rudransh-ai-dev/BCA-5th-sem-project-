@@ -158,8 +158,8 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
-                    <p>&copy; 2024 PharmaCare. All rights reserved.</p>
+                <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-500 text-sm">
+                    <p>&copy; {new Date().getFullYear()} PharmaCare. All rights reserved.</p>
                 </div>
             </div>
         </footer>

@@ -101,7 +101,7 @@ export default function OrdersPage() {
                                     </p>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-2xl font-bold text-emerald-600">${order.totalAmount.toFixed(2)}</p>
+                                    <p className="text-2xl font-bold text-emerald-600">&#8377;{order.totalAmount.toFixed(2)}</p>
                                     <p className="text-sm text-gray-500">{order.items.length} item{order.items.length > 1 ? 's' : ''}</p>
                                 </div>
                             </div>

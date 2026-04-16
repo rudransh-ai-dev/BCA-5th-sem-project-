@@ -15,25 +15,25 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+function getInitialCart(): CartItem[] {
+    if (typeof window === 'undefined') return [];
+    const savedCart = localStorage.getItem('pharmacy_cart');
+    if (savedCart) {
+        try {
+            return JSON.parse(savedCart);
+        } catch {
+            return [];
+        }
+    }
+    return [];
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
-    const [items, setItems] = useState<CartItem[]>([]);
-    const [isInitialized, setIsInitialized] = useState(false);
+    const [items, setItems] = useState<CartItem[]>(getInitialCart);
 
-    // Load cart from localStorage on mount
     useEffect(() => {
-        const savedCart = localStorage.getItem('pharmacy_cart');
-        if (savedCart) {
-            setItems(JSON.parse(savedCart));
-        }
-        setIsInitialized(true);
-    }, []);
-
-    // Save cart to localStorage whenever it changes
-    useEffect(() => {
-        if (isInitialized) {
-            localStorage.setItem('pharmacy_cart', JSON.stringify(items));
-        }
-    }, [items, isInitialized]);
+        localStorage.setItem('pharmacy_cart', JSON.stringify(items));
+    }, [items]);
 
     const addToCart = (medicine: Medicine, quantity: number = 1) => {
         setItems((prevItems) => {

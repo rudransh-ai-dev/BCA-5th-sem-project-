@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { useStore } from '@/context/StoreContext';
 import { categories } from '@/data/medicines';
+import { Medicine } from '@/types';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
 export default function AdminPage() {
@@ -54,7 +55,7 @@ export default function AdminPage() {
             price: parseFloat(formData.price),
             category: formData.category,
             stock: parseInt(formData.stock),
-            image: formData.image || '/assets/medicines/default.jpg',
+            image: formData.image || 'https://picsum.photos/seed/medicine/400/300',
             manufacturer: formData.manufacturer,
             requiresPrescription: formData.requiresPrescription,
         };
@@ -80,7 +81,7 @@ export default function AdminPage() {
         setIsAdding(false);
     };
 
-    const handleEdit = (medicine: any) => {
+    const handleEdit = (medicine: Medicine) => {
         setFormData({
             name: medicine.name,
             description: medicine.description,
@@ -95,13 +96,17 @@ export default function AdminPage() {
         setShowAddForm(true);
     };
 
+    const totalStock = medicines.reduce((sum, m) => sum + m.stock, 0);
+    const lowStockCount = medicines.filter((m) => m.stock < 20).length;
+    const categoriesCount = new Set(medicines.map((m) => m.category)).size;
+
     return (
-        <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white py-8 animate-fadeIn">
+        <div className="min-h-screen bg-gray-50 py-8 animate-fadeIn">
             <div className="max-w-6xl mx-auto px-4">
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-800 mb-2">Admin Dashboard</h1>
-                        <p className="text-gray-500">Manage medicines and inventory</p>
+                        <h1 className="text-2xl font-bold text-gray-900 mb-1">Admin Dashboard</h1>
+                        <p className="text-gray-500 text-sm">Manage medicines and inventory</p>
                     </div>
                     <button
                         onClick={() => {
@@ -125,6 +130,26 @@ export default function AdminPage() {
                         </svg>
                         Add Medicine
                     </button>
+                </div>
+
+                {/* Stats Cards */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div className="bg-white rounded-xl border border-gray-100 p-4">
+                        <p className="text-sm text-gray-500 mb-1">Total Products</p>
+                        <p className="text-2xl font-bold text-gray-900">{medicines.length}</p>
+                    </div>
+                    <div className="bg-white rounded-xl border border-gray-100 p-4">
+                        <p className="text-sm text-gray-500 mb-1">Total Stock</p>
+                        <p className="text-2xl font-bold text-gray-900">{totalStock.toLocaleString()}</p>
+                    </div>
+                    <div className="bg-white rounded-xl border border-gray-100 p-4">
+                        <p className="text-sm text-gray-500 mb-1">Categories</p>
+                        <p className="text-2xl font-bold text-gray-900">{categoriesCount}</p>
+                    </div>
+                    <div className="bg-white rounded-xl border border-gray-100 p-4">
+                        <p className="text-sm text-gray-500 mb-1">Low Stock Items</p>
+                        <p className={`text-2xl font-bold ${lowStockCount > 0 ? 'text-rose-600' : 'text-gray-900'}`}>{lowStockCount}</p>
+                    </div>
                 </div>
 
                 {/* Add Medicine Form */}
@@ -163,7 +188,7 @@ export default function AdminPage() {
                                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500"
                                     placeholder="/assets/medicines/medicine-name.jpg (Place file in public/assets/medicines)"
                                 />
-                                <p className="text-xs text-gray-500 mt-1">To use local images, place them in the 'public/assets/medicines' folder and reference them here.</p>
+                                <p className="text-xs text-gray-500 mt-1">To use local images, place them in the &quot;public/assets/medicines&quot; folder and reference them here.</p>
                             </div>
                             <div className="md:col-span-2">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
@@ -177,7 +202,7 @@ export default function AdminPage() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Price ($)</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Price (&#8377;)</label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -273,7 +298,7 @@ export default function AdminPage() {
                                         <td className="px-6 py-4">
                                             <span className="px-3 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-full">{med.category}</span>
                                         </td>
-                                        <td className="px-6 py-4 font-medium text-gray-800">${med.price.toFixed(2)}</td>
+                                        <td className="px-6 py-4 font-medium text-gray-800">&#8377;{med.price.toFixed(2)}</td>
                                         <td className="px-6 py-4">
                                             <span className={med.stock < 20 ? 'text-rose-600 font-medium' : 'text-gray-800'}>{med.stock}</span>
                                         </td>

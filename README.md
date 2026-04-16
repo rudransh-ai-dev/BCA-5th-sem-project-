@@ -1,41 +1,52 @@
-# 💊 PharmaCare — Online Pharmacy Store
+# PharmaCare — Online Pharmacy Store
 
-> A BCA 5th Semester Project | Built with Next.js, React, TypeScript & Tailwind CSS
-
----
-
-## 📌 About the Project
-
-**PharmaCare** is a modern full-stack online pharmacy store web application that simulates a real-world medicine e-commerce platform. It provides a seamless shopping experience for customers and a powerful dashboard for administrators to manage inventory and orders.
+> BCA 5th Semester Project | Next.js 16, React 19, TypeScript, Tailwind CSS v4
 
 ---
 
-## ✨ Features
+## About
 
-- 🛒 **Product Catalog** — Browse medicines by category with search & filter
-- 💊 **Medicine Listings** — Name, price, stock, manufacturer, prescription flag
-- 🛍️ **Shopping Cart** — Add, update, and remove items in real-time
-- 📦 **Checkout Flow** — Complete multi-step order placement
-- 📋 **Order History** — View and track previously placed orders
-- 🔐 **User Authentication** — Register and login functionality
-- 🛠️ **Admin Dashboard** — Manage products, stock levels, and orders
+**PharmaCare** is an online pharmacy web application that simulates a real-world medicine e-commerce platform. Customers can browse, search, and order medicines, while admins manage inventory through a dedicated dashboard.
 
 ---
 
-## 🗂️ Medicine Categories
+## Features
 
-- Pain Relief
-- Antibiotics
-- Vitamins & Supplements
-- Cold & Flu
-- Digestive Health
-- Skin Care
-- First Aid
-- Wellness
+### Customer
+- **Product Catalog** — Browse medicines with search, category filters, and sorting
+- **Medicine Cards** — Color-coded gradient cards per category (Pain Relief, Vitamins, etc.)
+- **Product Detail Pages** — Full details with quantity selector and add-to-cart
+- **Shopping Cart** — Add, update quantity, remove items with live total
+- **Checkout Flow** — Shipping address, payment method selection, order placement
+- **Order History** — View past orders with status tracking and printable bills
+
+### Admin
+- **Dashboard Stats** — Total products, stock count, categories, low-stock alerts
+- **CRUD Operations** — Add, edit, and delete medicines
+- **Inventory Table** — View all medicines with stock levels and quick actions
+
+### Auth
+- **Login / Register** — Client-side auth with role-based access (user/admin)
+- **Demo Credentials** — Pre-configured accounts for testing
 
 ---
 
-## 🛠️ Tech Stack
+## Medicine Categories
+
+| Category | Color Theme |
+|---|---|
+| Pain Relief | Orange |
+| Antibiotics | Rose |
+| Vitamins | Amber |
+| Cold & Flu | Sky Blue |
+| Digestive Health | Emerald |
+| Skin Care | Fuchsia |
+| First Aid | Red |
+| Wellness | Violet |
+
+---
+
+## Tech Stack
 
 | Technology | Purpose |
 |---|---|
@@ -43,24 +54,22 @@
 | **React 19** | UI component library |
 | **TypeScript** | Type-safe JavaScript |
 | **Tailwind CSS v4** | Utility-first styling |
-| **React Context API** | Global state management |
+| **React Context API** | State management (Auth, Cart, Store) |
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+
-- npm / yarn / pnpm
+- Node.js 20+
+- npm
 
 ### Installation
 
 ```bash
 # Clone the repository
 git clone git@github.com:LillyShadow/BCA-5th-sem-project-.git
-
-# Navigate into the project
-cd pharmacy-store
+cd BCA-5th-sem-project
 
 # Install dependencies
 npm install
@@ -69,48 +78,83 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Demo Accounts
+
+| Role | Email | Password |
+|---|---|---|
+| Admin | admin@pharmacy.com | admin123 |
+| User | ajaysir@example.com | user123 |
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
-├── app/            # Next.js App Router pages
-│   ├── admin/      # Admin dashboard
-│   ├── cart/       # Shopping cart page
-│   ├── checkout/   # Checkout flow
-│   ├── login/      # Login page
-│   ├── orders/     # Order history
-│   ├── register/   # Registration page
-│   └── shop/       # Medicine shop listing
-├── components/     # Reusable UI components
-├── context/        # React Context for global state
-├── data/           # Static medicine data
-└── types/          # TypeScript type definitions
+├── app/                  # Next.js App Router pages
+│   ├── admin/            # Admin dashboard (CRUD, stats)
+│   ├── cart/             # Shopping cart
+│   ├── checkout/         # Checkout flow
+│   ├── login/            # Login page
+│   ├── orders/           # Order history & detail
+│   │   └── [id]/         # Individual order + bill
+│   ├── register/         # Registration page
+│   ├── shop/             # Medicine catalog
+│   │   └── [id]/         # Product detail page
+│   ├── globals.css       # Global styles & animations
+│   ├── layout.tsx        # Root layout with providers
+│   └── page.tsx          # Homepage
+├── components/
+│   ├── CartItemCard.tsx   # Cart line item
+│   ├── Footer.tsx         # Site footer
+│   ├── Header.tsx         # Navigation with active states
+│   ├── LoadingSpinner.tsx # Reusable spinner
+│   ├── MedicineCard.tsx   # Product card for listings
+│   └── MedicineImage.tsx  # Gradient placeholder with category icon
+├── context/
+│   ├── AuthContext.tsx    # Authentication state
+│   ├── CartContext.tsx    # Shopping cart state
+│   └── StoreContext.tsx   # Medicines, orders, billing
+├── data/
+│   └── medicines.ts      # Sample medicine data & categories
+└── types/
+    └── index.ts          # TypeScript interfaces
 ```
 
 ---
 
-## � Future Enhancements (Real-World Integration)
+## UI Design
 
-While this project currently uses simulated data for academic demonstration, the following real-world integrations are planned:
-- [ ] **Real Database Integration:** Migrate `localstorage`/Context dummy data to a production database (e.g., MongoDB, PostgreSQL via Prisma).
-- [ ] **Secure Authentication:** Implement NextAuth.js or JWT-based authentication instead of simulated client-side login.
-- [ ] **Image Optimization:** Replace native `<img>` tags with Next.js `<Image>` component for better performance metrics.
-- [ ] **Server-Side Rendering (SSR):** Move product fetching and catalog generation to Server Components for improved SEO and initial load times.
-- [ ] **Payment Gateway Integration:** Add real payment processing (e.g., Stripe, Razorpay) to replace the simulated checkout flow.
+- **Inter font** for clean, modern typography
+- **Category-specific gradient images** instead of placeholder stock photos
+- **Consistent color system** — each medicine category has a unique color
+- **Currency**: Indian Rupee (₹) throughout
+- **Responsive** — works on mobile, tablet, and desktop
+- **Animations** — fade-in, slide-up, float effects with CSS keyframes
+- **Active navigation** — current page highlighted in header
 
 ---
 
-## �👩‍💻 Developer
+## Future Enhancements
 
-**BCA 5th Semester Project**  
+- [ ] **Database** — Migrate from localStorage/Context to MongoDB or PostgreSQL via Prisma
+- [ ] **Auth** — Implement NextAuth.js or JWT-based authentication
+- [ ] **SSR** — Move product fetching to Server Components for SEO
+- [ ] **Payments** — Integrate Razorpay or Stripe for real checkout
+- [ ] **Image uploads** — Allow admins to upload actual product images
+- [ ] **Order management** — Admin order status updates and notifications
+
+---
+
+## Developer
+
+**BCA 5th Semester Project**
 GitHub: [@LillyShadow](https://github.com/LillyShadow)
 
 ---
 
-## 📄 License
+## License
 
 This project is for academic purposes only.
