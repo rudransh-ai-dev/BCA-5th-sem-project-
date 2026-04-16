@@ -151,6 +151,9 @@ src/
 - [ ] **Voice Commerce** — Search for medicines using voice commands
 - [ ] **PWA Support** — Enable offline browsing and push notifications for order updates
 - [ ] **Doctor Consultation** — Integrated live chat/video call with pharmacists or doctors
+- [ ] **IoT Smart Inventory** — Real-time stock tracking using hardware sensors and RFID
+- [ ] **Temperature Monitoring (IoT)** — Live tracking for cold-storage medicines (vaccines/insulin) using IoT sensors
+
 
 
 ---
