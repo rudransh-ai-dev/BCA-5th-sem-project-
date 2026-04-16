@@ -1,6 +1,8 @@
 # PharmaCare — Online Pharmacy Store
 
 > BCA 5th Semester Project | Next.js 16, React 19, TypeScript, Tailwind CSS v4
+> **Project Status: Completed ✅**
+
 
 ---
 
@@ -145,6 +147,11 @@ src/
 - [ ] **Payments** — Integrate Razorpay or Stripe for real checkout
 - [ ] **Image uploads** — Allow admins to upload actual product images
 - [ ] **Order management** — Admin order status updates and notifications
+- [ ] **AI-Powered Search** — Intelligent medicine recommendations and semantic search
+- [ ] **Voice Commerce** — Search for medicines using voice commands
+- [ ] **PWA Support** — Enable offline browsing and push notifications for order updates
+- [ ] **Doctor Consultation** — Integrated live chat/video call with pharmacists or doctors
+
 
 ---
 
