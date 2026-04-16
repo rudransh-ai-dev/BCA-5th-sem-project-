@@ -70,7 +70,7 @@
 
 ```bash
 # Clone the repository
-git clone git@github.com:LillyShadow/BCA-5th-sem-project-.git
+git clone git@github.com:rudransh-ai-dev/BCA-5th-sem-project-.git
 cd BCA-5th-sem-project
 
 # Install dependencies
@@ -87,7 +87,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | Role | Email | Password |
 |---|---|---|
 | Admin | admin@pharmacy.com | admin123 |
-| User | ajaysir@example.com | user123 |
+| User | rudransh@example.com | user123 |
 
 ---
 
@@ -158,7 +158,7 @@ src/
 ## Developer
 
 **BCA 5th Semester Project**
-GitHub: [@LillyShadow](https://github.com/LillyShadow)
+GitHub: [@rudransh-ai-dev](https://github.com/rudransh-ai-dev)
 
 ---
 

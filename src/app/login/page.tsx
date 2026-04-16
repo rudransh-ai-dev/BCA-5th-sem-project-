@@ -70,7 +70,7 @@ export default function LoginPage() {
                         <p className="text-sm font-medium text-emerald-800 mb-2">Demo Credentials:</p>
                         <div className="space-y-1 text-sm text-emerald-700">
                             <p><strong>Admin:</strong> admin@pharmacy.com / admin123</p>
-                            <p><strong>User:</strong> ajaysir@example.com / user123</p>
+                            <p><strong>User:</strong> rudransh@example.com / user123</p>
                         </div>
                     </div>
 

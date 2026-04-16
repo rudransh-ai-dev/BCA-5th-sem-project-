@@ -30,8 +30,8 @@ const usersDb: { user: User; password: string }[] = [
     {
         user: {
             id: 'user-1',
-            name: 'Ajay sir',
-            email: 'ajaysir@example.com',
+            name: 'Rudransh',
+            email: 'rudransh@example.com',
             role: 'user',
             phone: '987-654-3210',
             address: '456 User Lane',
